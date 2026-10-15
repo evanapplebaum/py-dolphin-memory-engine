@@ -81,7 +81,7 @@ bool MacDolphinProcess::obtainEmuRAMInformations()
     // if these are true, then it is very likely the correct region, but we cannot guarantee
     if ((!MEM1Found || (MEM1Found && MEM1Obj == topInfo.obj_id)) && size == Common::GetMEM1Size() &&
         regInfo.share_mode == SM_TRUESHARED &&
-        basInfo.max_protection == (VM_PROT_READ | VM_PROT_WRITE))
+        (basInfo.max_protection & (VM_PROT_READ | VM_PROT_WRITE)) == (VM_PROT_READ | VM_PROT_WRITE))
     {
       if (basInfo.offset == 0x0)
       {
